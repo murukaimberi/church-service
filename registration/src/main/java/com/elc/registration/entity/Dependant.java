@@ -1,6 +1,6 @@
 package com.elc.registration.entity;
 
-import com.elc.churchregistration.entity.types.Gender;
+import com.elc.registration.entity.types.Gender;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
