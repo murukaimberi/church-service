@@ -6,6 +6,8 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 server:
   port: 8091
+  servlet:
+    context-path: /church-blog
 spring:
   application:
     name: church-blog

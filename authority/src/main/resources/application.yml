@@ -6,6 +6,8 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 server:
   port: 8092
+  servlet:
+    context-path: /church-authority
 spring:
   application:
     name: church-authority

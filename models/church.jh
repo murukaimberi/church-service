@@ -1,0 +1,113 @@
+entity Congregant {
+    title String required maxlength(50)
+    firstNames String required maxlength(50)
+    surname String required maxlength(50)
+    email String required maxlength(100)
+    dob LocalDate required
+    gender Gender
+    profession String maxlength(100)
+    maritalStatus MaritalStatus required
+    profilePicture ImageBlob maxbytes(1000000)
+}
+
+entity Post {
+    title String required maxlength(250)
+    subtitle String maxlength(250)
+    description TextBlob required
+    postedDate LocalDate required
+    image ImageBlob maxbytes(2000000)
+}
+
+entity BaptismHistory {
+    parishName String required maxlength(50)
+    baptismDate LocalDate required
+    confirmedDate LocalDate required
+    parishBaptisedAt String required maxlength(100)
+    prishedConfirmedAt String required maxlength(100)
+}
+
+entity MarriageHistory {
+    marriageDate LocalDate required
+    parishMarriedAt String required
+}
+
+entity Dependant {
+    fullNames String required maxlength(250)
+    dateOfBirth LocalDate required
+    gender Gender required
+}
+
+entity League {
+    name String required maxlength(100)
+    description TextBlob required
+    createdDate LocalDate required
+}
+
+entity Country {
+    countryName String
+}
+
+entity Region {
+    regionName String
+}
+// an ignored comment
+/** not an ignored comment */
+entity Location {
+    streetAddress String,
+    postalCode String,
+    city String,
+    stateProvince String
+}
+
+entity Contribution {
+    contributionType ContributionType required
+    frequency Frequency required
+    month LocalDate required
+    amount BigDecimal required
+}
+
+enum Gender {
+    MALE, FEMALE, NOT_MENTIONED
+}
+
+
+enum MaritalStatus {
+    MARRIED, DEVORCED, WIDOWED, SINGLE, NOT_STATED
+}
+
+enum ContributionType {
+    REGISTRATION, ANNUAL_DUES, PLEDGES, TITHE, HAVERST
+}
+
+enum Frequency {
+    YEARLY, LUMP_SUM, MONTHLY
+}
+
+relationship OneToOne {
+    Country{region} to Region
+    Location{country} to Country
+    Congregant{marriageHistory} to MarriageHistory{congregant(surname) required}
+    Congregant{baptismHistory} to BaptismHistory{congragant(surname) required}
+}
+
+// defining multiple OneToMany relationships with comments
+relationship ManyToOne {
+    Dependant{congregant(surname) required} to Congregant
+    Location{congregant(surname) required} to Congregant
+    Contribution{congregant(surname) required} to Congregant
+    Post{congregant(surname) required} to Congregant
+}
+
+relationship ManyToMany {
+    League{congregants} to Congregant{leagues}
+}
+
+relationship OneToOne {
+    Congregant{user(login) required} to User with builtInEntity
+}
+
+paginate all with pagination
+
+dto * with mapstruct
+
+service all with serviceImpl
