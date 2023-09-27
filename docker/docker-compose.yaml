@@ -14,5 +14,6 @@ services:
     # Where the data will be persisted if you are using the container please change this to your local path
     volumes:
       - my-db:/var/lib/mysql # C:\Users\prince
+
 volumes:
   my-db:
