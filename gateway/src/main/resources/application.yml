@@ -13,3 +13,9 @@ spring:
         - id: students
           predicates:
             - Path=/api/v1.0/students/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
