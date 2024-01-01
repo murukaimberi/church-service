@@ -4,16 +4,22 @@ eureka:
   client:
     register-with-eureka: false
 spring:
+  config:
+    import: optional:configserver:http://localhost:8888
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
       routes:
-        - id: students
+        - id: church-blog
+          uri: http://localhost:8091
           predicates:
-            - Path=/api/v1.0/students/**
-
+            - Path=/church-blog/api/v1.0/**
+        - id: church-registration
+          uri: http://localhost:8090
+          predicates:
+            - Path=/church-registration/api/v1.0/**
 management:
   endpoints:
     web:
