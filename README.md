@@ -11,7 +11,7 @@ The application is also designed to assist the administrators of the church to h
 * post on a notice board for announcements and events planned ( Year planner so congregants can easily see these through their profile )
 * Disable and enable members as they move to new places or decide to leave the church altogether
 * Post content sermons, lectures, church literature, video sermons and other media that could profit the growth of the church.
-* advertise merchandise that is being sold as a means of fund raising by the church.
+* advertise merchandise that is being sold as a means of fund-raising by the church.
 * Act as platform for bible study discussions through text and maybe in the future tie it in with some conferencing software to enable video chat discussions.
 
 #### CONGREGANTS / USERS
