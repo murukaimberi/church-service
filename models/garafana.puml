@@ -1,0 +1,25 @@
+@startuml
+
+!define SPRINGBOOT [Spring Boot Application]
+!define PROMETHEUS [Prometheus]
+!define GRAFANA [Grafana]
+!define EXPORTER [Prometheus Exporter]
+!define DATABASE [Database]
+!define SERVER [Monitoring Server]
+!define BROWSER [Web Browser]
+
+actor User
+
+User -> BROWSER : Access Metrics Dashboard
+BROWSER -> GRAFANA : Display Metrics
+GRAFANA --> PROMETHEUS : Query Metrics
+PROMETHEUS -> EXPORTER : Scrape Metrics
+EXPORTER -> SPRINGBOOT : Scrap Metrics
+SPRINGBOOT -> DATABASE : Application Data
+DATABASE --> SPRINGBOOT : Application Data Response
+EXPORTER --> PROMETHEUS : Publish Metrics
+PROMETHEUS -> SERVER : Store Metrics
+SERVER --> BROWSER : Serve Metrics Dashboard
+
+@enduml
+

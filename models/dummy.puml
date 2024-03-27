@@ -1,0 +1,56 @@
+@startuml Spring Boot Microservices Monitoring
+
+!define SPRITESURL https://raw.githubusercontent.com/rabelenda/puml-sprites/v2.0/sprites
+
+!define SPRINGBOOT_SPRITE $SPRITESURL/spring-framework.png
+!define PROMETHEUS_SPRITE $SPRITESURL/prometheus.png
+!define GRAFANA_SPRITE $SPRITESURL/grafana.png
+!define MICROSERVICE_SPRITE $SPRITESURL/server.png
+!define DATABASE_SPRITE $SPRITESURL/database.png
+!define BROWSER_SPRITE $SPRITESURL/browser.png
+
+!define DB_FILL #FFFFFF
+!define GREEN #00FF00
+
+!define system(x) component x as x <<x,SQUARE>> #DB_FILL
+
+!define microservice(x) [x] as x <<x,SQUARE>> #DB_FILL
+!define springboot(x) [x] as x <<x,SQUARE>> #DB_FILL
+!define prometheus(x) [x] as x <<x,SQUARE>> #DB_FILL
+!define grafana(x) [x] as x <<x,SQUARE>> #DB_FILL
+
+!define internet(x) [x] as x <<x,SQUARE>> #GREEN
+
+skinparam component {
+  FontSize 14
+  BackgroundColor #FDFEFE
+}
+
+internet(Internet)
+
+prometheus(Prometheus)
+grafana(Grafana)
+
+cloud {
+  internet --> Prometheus
+  internet --> Grafana
+}
+
+database(Database)
+browser(Browser)
+
+microservice(Microservice1)
+microservice(Microservice2)
+microservice(Microservice3)
+
+Internet --> Microservice1 : HTTP Requests
+Internet --> Microservice2 : HTTP Requests
+Internet --> Microservice3 : HTTP Requests
+
+Microservice1 --> Prometheus : Metrics (HTTP)
+Microservice2 --> Prometheus : Metrics (HTTP)
+Microservice3 --> Prometheus : Metrics (HTTP)
+
+Prometheus --> Grafana : Metrics Queries
+
+@enduml

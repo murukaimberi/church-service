@@ -1,0 +1,48 @@
+@startuml
+
+skinparam interface {
+  backgroundColor RosyBrown
+  borderColor orange
+}
+
+skinparam actor {
+    backgroundColor blue
+}
+
+skinparam database {
+    FontSize 13
+    FontName Inter
+    BackgroundColor<<MySQLDB>> #176B87
+    borderColor<<MySQLDB>> #000
+}
+
+skinparam component {
+  FontSize 13
+  BackgroundColor<<Apache>> Pink
+  BackgroundColor<<ChurchRegistration>> #49108B
+  BorderColor<<Apache>> #FF6655
+  FontName Courier
+  BorderColor black
+  BackgroundColor 7D0A0A
+  FontColor #fff
+  ArrowFontName Impact
+  ArrowColor #FF6655
+  ArrowFontColor #777777
+}
+
+component Backend {
+    [Church Registration]
+
+}
+
+() "Data Access" as DA
+Component "Web Server" as WS << Apache >>
+Component "Church Registration" as church_registration << ChurchRegistration >>
+Actor "Client User" as clientUser
+database "MySQL Database" as mysql << MySQLDB >>
+
+clientUser - [Church Registration]
+
+HTTP - WS
+
+@enduml
